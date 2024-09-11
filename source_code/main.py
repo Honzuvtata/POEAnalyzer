@@ -1,7 +1,5 @@
-import datetime
 import requests
 import json
-from pathlib import path
 
 
 def update_card_data():
@@ -27,11 +25,12 @@ def display_card_info(card_name, cards_data):
     # If card is found, display its details
     if card:
         print(f"Card Found: {card['name']}")
-        print(f"Reward: {card['reward']}")
         print(f"Chaos Value: {card['chaosValue']}")
         print(f"Stack Size: {card['stackSize']}")
     else:
         print(f"Card '{card_name}' not found.")
 
 # Example: Display info about "The Doctor" card
-display_card_info("The Doctor", cards)
+with open("divination_cards.json", 'r') as file:
+    cardsData = json.load(file)
+    display_card_info("The Doctor", cardsData)
